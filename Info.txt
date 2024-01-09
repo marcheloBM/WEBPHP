@@ -1,0 +1,2 @@
+v1.0 Inicio del proyecto
+login, registro y home de cliente casi listo 
