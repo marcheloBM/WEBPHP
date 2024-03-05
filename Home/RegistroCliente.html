@@ -135,7 +135,15 @@
 
 
     =================================================-->
-    
+    <!-- Script para obtener el parámetro de la URL si aún no está declarado -->
+    <script>
+        if (typeof urlParams === 'undefined') {
+            var urlParams = new URLSearchParams(window.location.search);
+        }
+
+        // Mueve la declaración de dato al ámbito global y asigna su valor
+        const dato = urlParams.get('dato');
+    </script>
 </head>
 
 
@@ -181,39 +189,48 @@
 		                <p>¡Únete a la comunidad TrackMyPC! Configuremos tu cuenta.</p>
 
 		            </div>
-
+                    
 				<div class="tab-base">
 
-		            <form action="php\Usuario.php" method="POST">
+		            <form action="php\Cliente.php" method="POST">
 
 		                <div class="row">
 		                    <div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Rut" name="txtrut" required autofocus="" oninput="formatearRut(this); validarRut(this);" maxlength="12">
+		                            <input type="text" class="form-control" placeholder="Direccion" name="txtdireccion" required>
 		                        </div>
 
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Apellido" name="txtapellido" required>
+		                            <input type="text" class="form-control" placeholder="Celular" name="txtcelular" required>
 		                        </div>
 		                    </div>
 
 		                    <div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Nombre" name="txtnombre" required>
+		                            <input type="email" class="form-control" placeholder="Correo" name="txtcorreo" required>
 		                        </div>
-
-		                        <div class="form-group">
-		                            <input type="password" class="form-control" placeholder="Contraseña" name="txtpass" required>
+                                <!-- Script para asignar el valor al input después de cargar el DOM -->
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Asigna el valor al input solo si urlParams está declarado
+                                        if (typeof urlParams !== 'undefined') {
+                                            // Ahora dato está definido en este ámbito
+                                            document.getElementById('miInput').value = dato;
+                                        }
+                                    });
+                                </script>
+                                <div class="form-group">
+		                            <input type="text" class="form-control" placeholder="Rut" name="txtrut" required autofocus="" oninput="formatearRut(this)" maxlength="12" readonly id="miInput">
 		                        </div>
 		                    </div>
 		                </div>
-                        <!--<div id="mensajeRut"></div>-->
-		                <button class="btn btn-primary btn-lg btn-block" id="btnRegistrar" name="btnRegistrar" value="RegistrarUser" type="submit">Registrar</button>
+
+		                <button class="btn btn-primary btn-lg btn-block" name="btnRegistrarClien" value="RegistrarClien" type="submit">Registrar</button>
+
 		            </form>
-					
 
 		        </div>
-				                    
+                    
 		        <div class="pad-all">
 
 		            Ya tienes una cuenta ? <a href="login.php" class="btn-link mar-rgt text-bold">Iniciar Sesión</a>
@@ -244,7 +261,7 @@
 
 		
 
-		</div>
+		
 
     </div>
 
@@ -287,7 +304,50 @@
 
 
     <!--Validar y formatear RUT-->
-    <script src="js\validarRUT.js"></script>
+
+    <script>
+
+    function formatearRut(input) {
+
+        var rut = input.value.replace(/[^\dkK]+/g, ''); // Remover caracteres no numéricos ni 'K'
+
+        var rutFormateado = '';
+
+
+
+        if (rut.length > 1) {
+
+          var cuerpo = rut.slice(0, -1);
+
+          var dv = rut.slice(-1).toUpperCase();
+
+
+
+          while (cuerpo.length > 3) {
+
+            rutFormateado = '.' + cuerpo.slice(-3) + rutFormateado;
+
+            cuerpo = cuerpo.slice(0, -3);
+
+          }
+
+
+
+          rutFormateado = cuerpo + rutFormateado + '-' + dv;
+
+        } else {
+
+          rutFormateado = rut;
+
+        }
+
+
+
+        input.value = rutFormateado;
+
+      }
+
+  </script>
 
 
 

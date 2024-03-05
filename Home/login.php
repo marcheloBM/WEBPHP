@@ -1,184 +1,292 @@
-﻿<!DOCTYPE html>
+﻿<?php
+
+		// Iniciar la sesión
+
+?>
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
 
     <title>Página de inicio de sesión | Nifty - Plantilla de administración</title>
 
 
+
+
+
     <!--STYLESHEET-->
+
     <!--=================================================-->
 
+
+
     <!--Open Sans Font [ OPTIONAL ]-->
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
 
+
+
+
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
+
     <link href="css\bootstrap.min.css" rel="stylesheet">
 
 
+
+
+
     <!--Nifty Stylesheet [ REQUIRED ]-->
+
     <link href="css\nifty.min.css" rel="stylesheet">
 
 
+
+
+
     <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+
     <link href="css\demo\nifty-demo-icons.min.css" rel="stylesheet">
 
 
+
+
+
     <!--=================================================-->
+
+
+
+
 
 
 
     <!--Pace - Page Load Progress Par [OPTIONAL]-->
+
     <link href="plugins\pace\pace.min.css" rel="stylesheet">
+
     <script src="plugins\pace\pace.min.js"></script>
 
 
+
+
+
         
+
     <!--Demo [ DEMONSTRATION ]-->
+
     <link href="css\demo\nifty-demo.min.css" rel="stylesheet">
 
+
+
     
+
     <!--=================================================
 
+
+
     REQUIRED
+
     You must include this in your project.
 
 
+
+
+
     RECOMMENDED
+
     This category must be included but you may modify which plugins or components which should be included in your project.
 
 
+
+
+
     OPTIONAL
+
     Optional plugins. You may choose whether to include it in your project or not.
 
 
+
+
+
     DEMONSTRATION
+
     This is to be removed, used for demonstration purposes only. This category must not be included in your project.
 
 
+
+
+
     SAMPLE
+
     Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+
 
 
     Detailed information and more samples can be found in the document.
 
+
+
     =================================================-->
-	<!--Demo [ DEMONSTRATION ]-->
-    <link href="php\cerrar_sesion.php" rel="stylesheet">
+
+	<!--Demo [ DEMONSTRATION ]
+
+    <link href="php\cerrar_sesion.php" rel="stylesheet">-->
+
         
+
 </head>
 
+
+
 <!--TIPS-->
+
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 
+
+
 <body>
+
 		
+
     <div id="container" class="cls-container">
+
         
+
 		<!-- BACKGROUND IMAGE -->
-		<!--===================================================-->
-		<div id="bg-overlay"></div>
-		
-		
-		<!-- LOGIN FORM -->
-		<!--===================================================-->
-		<div class="cls-content">
-		    <div class="cls-content-sm panel">
-		        <div class="panel-body">
-		            <div class="mar-ver pad-btm">
-		                <h1 class="h3">Ingreso a la Cuenta</h1>
-		                <p>Iniciar sesión en su cuenta</p>
-		            </div>
-		            <form action="php\Usuario.php" method="POST">
-		                <div class="form-group">
-		                    <input type="text" class="form-control" name="txtrut" placeholder="Rut de Usuario" required autofocus="" oninput="formatearRut(this)" maxlength="12">
-		                </div>
-		                <div class="form-group">
-		                    <input type="password" class="form-control" name="txtpass" placeholder="Contraseña" required>
-		                </div>
-		                <button class="btn btn-primary btn-lg btn-block"  value="Ingresar" type="submit" name="btnIngresar" >Iniciar Sesión</button>
-		            </form>
-		        </div>
-		
-		        <div class="pad-all">
-                    <a href="password-restablecer.html" class="btn-link mar-rgt">Has olvidado tu contraseña ?</a>
-		            <a href="RegistroUsuario.html" class="btn-link mar-lft">Crea una cuenta nueva</a>
-		        </div>
-		    </div>
-		</div>
-		<!--===================================================-->
-	<?php
-		// Iniciar la sesión
-		session_start();
-		
-		// Verificar si hay un mensaje en la sesión
-		if (isset($_SESSION['mensaje'])) {
-			$tipo = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : 'info';
-			// Imprimir la alerta
-			echo "<div class='panel-body alert alert-$tipo' id='demo-noty-onshown'>
-			<button class='close' data-dismiss='alert'>
-			<i class='pci-cross pci-circle'></i>
-			</button><strong>Error!</strong>'{$_SESSION['mensaje']}'</div>";
-			//echo "<div class='alert alert-$tipo'>{$_SESSION['mensaje']}</div>";
 
-			// Limpiar la variable de sesión
-			unset($_SESSION['mensaje']);
-			unset($_SESSION['tipo']);
-		}
-	?>
+		<!--===================================================-->
+
+		<div id="bg-overlay"></div>
+
+		
+
+		
+
+		<!-- LOGIN FORM -->
+
+		<!--===================================================-->
+
+		<div class="cls-content">
+
+		    <div class="cls-content-sm panel">
+
+		        <div class="panel-body">
+
+		            <div class="mar-ver pad-btm">
+
+		                <h1 class="h3">Ingreso a la Cuenta</h1>
+
+		                <p>Iniciar sesión en su cuenta</p>
+
+		            </div>
+
+		            <form action="php\Usuario.php" method="POST">
+
+		                <div class="form-group">
+
+		                    <input type="text" class="form-control" name="txtrut" placeholder="Rut de Usuario" required autofocus="" oninput="formatearRut(this)" maxlength="12">
+
+		                </div>
+
+		                <div class="form-group">
+
+		                    <input type="password" class="form-control" name="txtpass" placeholder="Contraseña" required>
+
+		                </div>
+
+		                <button class="btn btn-primary btn-lg btn-block"  value="Ingresar" type="submit" name="btnIngresar" >Iniciar Sesión</button>
+
+		            </form>
+
+		        </div>
+
+		
+
+		        <div class="pad-all">
+
+                    <a href="password-restablecer.html" class="btn-link mar-rgt">Has olvidado tu contraseña ?</a>
+
+		            <a href="RegistroUsuario.html" class="btn-link mar-lft">Crea una cuenta</a>
+
+		        </div>
+
+		    </div>
+
+		</div>
+
+		<!--===================================================-->
+			<!-- Código PHP para mostrar el mensaje de error -->
+	<?php require_once 'php/Notificaciones.php'; ?>
     </div>
+
     <!--===================================================-->
+
     <!-- END OF CONTAINER -->
+    
+    
+    
+
+
 
 
         
+
     <!--JAVASCRIPT-->
+
     <!--=================================================-->
 
+
+
     <!--jQuery [ REQUIRED ]-->
+
     <script src="js\jquery.min.js"></script>
 
 
+
+
+
     <!--BootstrapJS [ RECOMMENDED ]-->
+
     <script src="js\bootstrap.min.js"></script>
 
 
+
+
+
     <!--NiftyJS [ RECOMMENDED ]-->
+
     <script src="js\nifty.min.js"></script>
 
+
+
 		
+
     <!--=================================================-->
+
     
+
     <!--Background Image [ DEMONSTRATION ]-->
+
     <script src="js\demo\bg-images.js"></script>
+
     
+
     <!--Validar y formatear RUT-->
-    <script>
-    function formatearRut(input) {
-        var rut = input.value.replace(/[^\dkK]+/g, ''); // Remover caracteres no numéricos ni 'K'
-        var rutFormateado = '';
-
-        if (rut.length > 1) {
-          var cuerpo = rut.slice(0, -1);
-          var dv = rut.slice(-1).toUpperCase();
-
-          while (cuerpo.length > 3) {
-            rutFormateado = '.' + cuerpo.slice(-3) + rutFormateado;
-            cuerpo = cuerpo.slice(0, -3);
-          }
-
-          rutFormateado = cuerpo + rutFormateado + '-' + dv;
-        } else {
-          rutFormateado = rut;
-        }
-
-        input.value = rutFormateado;
-      }
-  </script>
+    <script src="js\validarRUT.js"></script>
+    
 
 </body>
+
 </html>
+
