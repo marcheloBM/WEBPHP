@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prueba</title>
+</head>
+
+<body>
+	<h1>Datos del Usuario</h1>
+	
+<div id="datosUsuario"></div>
+
+<script>
+    // Hacer la solicitud HTTP al servicio web
+    fetch('https://marchebm.000webhostapp.com/ws/json.php') // Reemplaza 'tu_servidor.php' con la ruta correcta a tu script PHP en el servidor
+      .then(response => response.json()) // Convertir la respuesta a JSON
+      .then(data => {
+        // Procesar los datos y mostrarlos en la página
+        const usuarios = data; // Array de objetos de usuario
+        let html = '';
+		
+		html +=`<h3>Cantidad de registro: ${data.length}</h3>`;
+		
+        usuarios.forEach(usuario => {
+          html += `
+            <div>
+              <p><strong>ID de Usuario:</strong> ${usuario.idusuario}</p>
+              <p><strong>RUT:</strong> ${usuario.rut}</p>
+              <p><strong>Nombre:</strong> ${usuario.nombre}</p>
+              <p><strong>Apellido:</strong> ${usuario.apellido}</p>
+              <p><strong>Tipo de Usuario:</strong> ${usuario.tipousuario}</p>
+            </div>
+            <hr>
+          `;
+        });
+
+        document.getElementById('datosUsuario').innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos:', error);
+        document.getElementById('datosUsuario').innerHTML = '<p>Error al obtener los datos del usuario.</p>';
+      });
+    </script>
+</body>
+</html>
